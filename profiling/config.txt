@@ -1,0 +1,6 @@
+[
+    {"func": "examples.hash",
+     "args": "examples.get_hash_args",
+     "rounds": 1000000
+    }
+]
