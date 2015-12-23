@@ -3,13 +3,13 @@ import json
 import marshal
 import pprint
 import pstats
-import StringIO
 import sys
 import tempfile
 import time
 
 import config
 import stats
+
 
 class Result(object):
     def __init__(self):
@@ -28,16 +28,16 @@ class Result(object):
         if self.top_calls_total_time:
             data['top_calls_total_time'] = [
                 {'name': e.name, 'percentage': e.total_time_percentage}
-                    for e in self.top_calls_total_time]
+                for e in self.top_calls_total_time]
         return data
 
     def __str__(self):
         return 'Result: name: %s, time: %.2f, exception: %s, ' \
                'top_calls_total_time: %.2f' % (
-               self.name,
-               self.time,
-               self.exception,
-               self.top_calls_total_time)
+                   self.name,
+                   self.time,
+                   self.exception,
+                   self.top_calls_total_time)
 
 
 def get_result_from_name(name, results):
@@ -60,7 +60,7 @@ def read_last_results():
             last_result.top_calls_total_time = result['top_calls_total_time']
             last_results.append(last_result)
 
-    except Exception as e:
+    except Exception:
         last_results = []
 
     return last_results
@@ -97,7 +97,7 @@ def profile(config_file):
             stats_file = tempfile.NamedTemporaryFile()
             ps.dump_stats(stats_file.name)
             s = marshal.load(stats_file.file)
-            #pprint.pprint(s)
+            # pprint.pprint(s)
             ps = stats.parse_stats(s)
             ps = stats.sort_stats_by_total_time(ps)
             ps_filtered = []

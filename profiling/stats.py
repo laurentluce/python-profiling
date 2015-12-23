@@ -1,4 +1,6 @@
-import config
+"""Profiling stats.
+"""
+
 
 class Stat(object):
     def __init__(self):
@@ -28,14 +30,14 @@ class Stat(object):
         return 'Stat: filename: %s, line_number: %d, name: %s, calls: %d, ' \
                'non_recursive_calls: %d, total_time: %f, ' \
                'total_time_percentage: %f, cumulative_time: %f' % (
-               self.filename,
-               self.line_number,
-               self.name,
-               self.calls,
-               self.non_recursive_calls,
-               self.total_time,
-               self.total_time_percentage,
-               self.cumulative_time)
+                   self.filename,
+                   self.line_number,
+                   self.name,
+                   self.calls,
+                   self.non_recursive_calls,
+                   self.total_time,
+                   self.total_time_percentage,
+                   self.cumulative_time)
 
 
 def parse_stats(stats):
@@ -64,4 +66,3 @@ def parse_stats(stats):
 
 def sort_stats_by_total_time(stats):
     return sorted(stats, key=lambda stat: stat.total_time, reverse=True)
-

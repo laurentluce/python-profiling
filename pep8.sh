@@ -1,2 +1,2 @@
-flake8 algorithms
+flake8 profiling
 exit

@@ -1,7 +1,9 @@
 """Config parser."""
+
 import json
 
 import errors
+
 
 class ConfigEntry(object):
     def __init__(self):
@@ -52,7 +54,7 @@ def parse_entry(entry):
 
             if 'init_args' not in entry:
                 raise errors.ConfigInvalid('init_args missing for %s' % (
-                                               cls))
+                                           cls))
             init_args_func = entry['init_args']
             init_args_modules = init_args_func.split('.')
             init_args_module = import_module(init_args_modules[:-1])

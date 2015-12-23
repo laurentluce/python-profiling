@@ -3,12 +3,12 @@ setup(
     name = "profiling",
     packages = ['profiling'],
     version = "0.1",
-    description = "Profiling implemented in Python",
+    description = "Profiling and benchmarking implemented in Python",
     author = "Laurent Luce",
     author_email = "laurentluce49@yahoo.com",
     url = "http://github.com/laurentluce/python-profiling",
     download_url = "http://github.com/laurentluce/python-profiling",
-    keywords = ["profiling"],
+    keywords = ["profiling", "benchmarking"],
     classifiers = [
         "Programming Language :: Python",
         "Operating System :: OS Independent",
@@ -22,8 +22,7 @@ setup(
     ----------------------------
 
     DESCRIPTION
-    The purpose of this library is to help you with basic and more advanced
-    algorithms
+    The purpose of this library is to help you with profiling and benchmarking.
 
     LICENSE The Python Profiling Library is distributed under the MIT
     License """ )
