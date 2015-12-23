@@ -1,8 +1,14 @@
 import hashlib
 
 
-def get_hash_args():
-    return ('that dog runs fast.',)
+class Crypto(object):
+    def __init__(self, algorithm):
+        self.hash_algorithm = algorithm
+
+    def hash(self, s):
+        h = getattr(hashlib, self.hash_algorithm)()
+        h.update(s)
+        return h.digest()
 
 
 def hash(s):

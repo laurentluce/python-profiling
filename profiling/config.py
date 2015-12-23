@@ -60,7 +60,7 @@ def parse_entry(entry):
             if not isinstance(init_args, tuple):
                 raise errors.ConfigInvalid('%s not returning a tuple' % (
                                            init_args_func))
-            instance = cls_call(*init_args)
+            instance = cls_call(*(init_args[0]), **(init_args[1]))
 
             if 'method' not in entry:
                 raise errors.ConfigInvalid('method missing for %s' % (cls))
@@ -89,16 +89,6 @@ def parse_entry(entry):
                 raise errors.ConfigInvalid('%s not returning a tuple' % (
                                            args_func))
             config_entry.args = args
-
-        if 'kwargs' in entry:
-            kwargs_func = entry['kwargs']
-            kwargs_modules = kwargs_func.split('.')
-            kwargs_module = import_module(kwargs_modules[:-1])
-            kwargs = getattr(kwargs_module, kwargs_modules[-1])()
-            if not isinstance(kwargs, dict):
-                raise errors.ConfigInvalid('%s not returning a dict' % (
-                                           kwargs_func))
-            config_entry.kwargs = kwargs
 
         if 'rounds' in entry:
             config_entry.rounds = entry['rounds']

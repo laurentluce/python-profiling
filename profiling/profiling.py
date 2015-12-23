@@ -4,6 +4,7 @@ import marshal
 import pprint
 import pstats
 import StringIO
+import sys
 import tempfile
 import time
 
@@ -65,8 +66,8 @@ def read_last_results():
     return last_results
 
 
-def profile():
-    entries = config.parse_config('config.txt')
+def profile(config_file):
+    entries = config.parse_config(config_file)
     last_results = read_last_results()
 
     results = []
@@ -82,7 +83,7 @@ def profile():
         try:
             st = time.time()
             for _ in range(entry.rounds):
-                entry.call(*entry.args, **entry.kwargs)
+                entry.call(*(entry.args[0]), **(entry.args[1]))
             result.time = (time.time() - st) * 1000. / entry.rounds
             if last_result_time:
                 result.time_diff_percentage = 100 * (
@@ -90,7 +91,7 @@ def profile():
             pr = cProfile.Profile()
             pr.enable()
             for _ in range(entry.rounds):
-                entry.call(*entry.args, **entry.kwargs)
+                entry.call(*(entry.args[0]), **(entry.args[1]))
             pr.disable()
             ps = pstats.Stats(pr)
             stats_file = tempfile.NamedTemporaryFile()
@@ -113,7 +114,7 @@ def profile():
 
 
 if __name__ == "__main__":
-    results = profile()
+    results = profile(sys.argv[1])
     for result in results:
         pprint.pprint(result.get_data())
 

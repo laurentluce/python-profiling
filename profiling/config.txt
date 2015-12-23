@@ -1,6 +1,8 @@
 [
-    {"func": "examples.hash",
-     "args": "examples.get_hash_args",
+    {"class": "examples.Crypto",
+     "init_args": "profiling_examples.get_crypto_init_args",
+     "method": "hash",
+     "args": "profiling_examples.get_hash_args",
      "rounds": 1000000
     }
 ]
