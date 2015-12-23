@@ -69,7 +69,7 @@ We can now run profiling and benchamrking.
 
 By looking at ``time``, we can see that each round of the function ``hash`` took about 0.0013 ms.  Looking at the list ``top_calls_total_time``, we can see that most of the time (71%) is spent in the method ``hashlib.digest``.
 
-We would like to see the performance impact of switching from sha256 to sha512.  To do that, we modify our function ``hash`` to use sha512 and use run our benchmarking and profiling one more time.
+We would like to see the performance impact of switching from sha256 to sha512.  To do that, we modify our function ``hash`` to use sha512 and we run our benchmarking and profiling one more time.
 
 .. code-block:: python
 
